@@ -41,6 +41,9 @@ TheBox.prototype.run = function(box) {
                 navs.off('mouseup.navs').on('mouseup.navs', function(ev){
                     clearInterval(s.intervalo);
                 });
+                $(document).off('mouseup.navs').on('mouseup.navs', function(ev){
+                    clearInterval(s.intervalo);
+                });
             }
         }
     }
