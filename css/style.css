@@ -1,0 +1,372 @@
+@charset "UTF-8";
+/*------------------------------------*\ $VARS
+\*------------------------------------*/
+/** Set up project-specific variables here which are then used throughout your build. These variables are automatically picked up by inuit.css so you should never need to modify any framework code. */
+/** Debug mode will visually highlight any potential markup/accessibility quirks in the browser. Set to `true` or `false`. */
+/** Do you want all elements to adopt `box-sizing:border-box;` as per paulirish.com/2012/box-sizing-border-box-ftw ? */
+/** Would you like to use Adam Whitcroft’s Batch icon font, as per: adamwhitcroft.com/batch ? */
+/** Base stuff */
+/** How big would you like round corners to be by default? */
+/** Responsiveness? */
+/** Responsiveness for widescreen/high resolution desktop monitors and beyond? Note: $responsive parameter above must be enabled before enabling this. */
+/** Responsive push and pull produce a LOT of code, only turn them on if you definitely need them. */
+/** Tell inuit.css when breakpoints start. */
+/** Font-sizes (in pixels). Refer to relevant sections for their implementations. */
+/** English quote marks? */
+/** If you want English quotes then please do not edit these; they’re only here because Sass needs them. */
+/** If you need non-English quotes, please alter the following values accordingly: */
+/** Brand stuff */
+/** inuit.css will work these next ones out for you.  Assign our `$base-line-height` to a new spacing var for more transparency. */
+/** Generic utility styles etc. */
+/*------------------------------------*\ $MIXINS
+\*------------------------------------*/
+/** Create a fully formed type style (sizing and vertical rhythm) by passing in a single value, e.g.:  `@include font-size(10px);`  Thanks to @redclov3r for the `line-height` Sass: twitter.com/redclov3r/status/250301539321798657 */
+/** Create vendor-prefixed CSS in one go, e.g.  `@include vendor(border-radius, 4px);`  */
+/** Create CSS keyframe animations for all vendors in one go, e.g.:  .foo{ @include vendor(animation, shrink 3s); }  @include keyframe(shrink){ from{ font-size:5em; } }  Courtesy of @integralist: twitter.com/integralist/status/260484115315437569 */
+/** Force overly long spans of text to truncate, e.g.:  `@include truncate(100%);`  Where `$truncation-boundary` is a united measurement. */
+/** CSS arrows!!! But... before you read on, you might want to grab a coffee...  This mixin creates a CSS arrow on a given element. We can have the arrow appear in one of 12 locations, thus:  01    02    03 +------------------+ 12 |                  | 04 |                  | 11 |                  | 05 |                  | 10 |                  | 06 +------------------+ 09    08    07  You pass this position in along with a desired arrow color and optional border color, for example:  `@include arrow(top, left, red)`  for just a single, red arrow, or:  `@include arrow(bottom, center, red, black)`  which will create a red triangle with a black border which sits at the bottom center of the element. Call the mixin thus:   .foo{ background-color:#BADA55; border:1px solid #ACE; @include arrow(top, left, #BADA55, #ACE); }  */
+/** Media query mixin.  It’s not great practice to define solid breakpoints up-front, preferring to modify your design when it needs it, rather than assuming you’ll want a change at ‘mobile’. However, as inuit.css is required to take a hands off approach to design decisions, this is the closest we can get to baked-in responsiveness. It’s flexible enough to allow you to set your own breakpoints but solid enough to be frameworkified.  We define some broad breakpoints in our vars file that are picked up here for use in a simple media query mixin. Our options are:  palm lap lap-and-up portable desk desk-wide  Not using a media query will, naturally, serve styles to all devices.  `@include media-query(palm){ [styles here] }`  We work out your end points for you: */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
+
+audio, canvas, video { display: inline-block; }
+
+audio:not([controls]) { display: none; height: 0; }
+
+[hidden] { display: none; }
+
+a:focus { outline: thin dotted; }
+
+a:active, a:hover { outline: 0; }
+
+abbr[title] { border-bottom: 1px dotted; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
+
+mark { background: #ff0; color: #000; }
+
+code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; }
+
+pre { white-space: pre-wrap; }
+
+q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+small { font-size: 80%; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+img { border: 0; }
+
+svg:not(:root) { overflow: hidden; }
+
+figure { margin: 0; }
+
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
+
+legend { border: 0; padding: 0; }
+
+button, input, select, textarea { font-family: inherit; font-size: 100%; margin: 0; }
+
+button, input { line-height: normal; }
+
+button, select { text-transform: none; }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; }
+
+button[disabled], html input[disabled] { cursor: default; }
+
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; }
+
+input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+textarea { overflow: auto; vertical-align: top; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+/*------------------------------------*\ $CLEARFIX
+\*------------------------------------*/
+/** Micro clearfix, as per: css-101.org/articles/clearfix/latest-new-clearfix-so-far.php Extend the clearfix class with Sass to avoid the `.cf` class appearing over and over in your markup. */
+.cf:after, .nav:after, .media:after, .island:after, .islet:after, .stat-group:after { content: ""; display: table; clear: both; }
+
+.media, .island, .islet { margin-bottom: 10px; margin-bottom: 0.625rem; }
+.islet .media, .islet .island, .islet .islet { margin-bottom: 5px; margin-bottom: 0.3125rem; }
+
+.landmark { margin-bottom: 20px; margin-bottom: 1.25rem; }
+
+hr { margin-bottom: 8px; margin-bottom: 0.5rem; }
+
+/** Base styles; unclassed HTML elements etc. */
+/*------------------------------------*\ $IMAGES
+\*------------------------------------*/
+/** Demo: jsfiddle.net/inuitcss/yMtur */
+/** Fluid images. */
+img { max-width: 100%; }
+
+/** Non-fluid images if you specify `width` and/or `height` attributes. */
+img[width], img[height] { max-width: none; }
+
+/** Image placement variations. */
+.img--right { float: right; margin-bottom: 10px; margin-left: 10px; }
+
+.img--left { float: left; margin-right: 10px; margin-bottom: 10px; }
+
+.img--center { display: block; margin-right: auto; margin-bottom: 10px; margin-left: auto; }
+
+/** Keep your images on your baseline.  Please note, these will not work too nicely with fluid images and will distort when resized below a certain width. Use with caution. */
+.img--short { height: 50px; }
+
+.img--medium { height: 100px; }
+
+.img--tall { height: 150px; }
+
+/** Images in `figure` elements. */
+figure > img { display: block; }
+
+/** Objects and abstractions  Single-line comment (//) out any objects you do not need in your project. */
+/*------------------------------------*\ $NAV
+\*------------------------------------*/
+/** Nav abstraction as per: csswizardry.com/2011/09/the-nav-abstraction When used on an `ol` or `ul`, this class throws the list into horizontal mode e.g.:  <ul class=nav> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>Portfolio</a></li> <li><a href=#>Contact</a></li> </ul>  Demo: jsfiddle.net/inuitcss/Vnph4  */
+.nav { list-style: none; margin-left: 0; }
+.nav > li, .nav > li > a { display: inline-block; *display: inline; zoom: 1; }
+
+/** `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:  <ul class="nav  nav--stacked"> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>Portfolio</a></li> <li><a href=#>Contact</a></li> </ul>  */
+.nav--stacked > li { display: list-item; }
+.nav--stacked > li > a { display: block; }
+
+/** `.nav--banner` extends `.nav` and centres the list, e.g.:  <ul class="nav  nav--banner"> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>Portfolio</a></li> <li><a href=#>Contact</a></li> </ul>  */
+.nav--banner { text-align: center; }
+
+/** Give nav links a big, blocky hit area. Extends `.nav`, e.g.:  <ul class="nav  nav--block"> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>Portfolio</a></li> <li><a href=#>Contact</a></li> </ul>  */
+.nav--block { line-height: 1; /** Remove whitespace caused by `inline-block`. */ letter-spacing: -0.31em; word-spacing: -0.43em; white-space: nowrap; }
+.nav--block > li { letter-spacing: normal; word-spacing: normal; }
+.nav--block > li > a { padding: 5px; }
+
+/** Force a nav to occupy 100% of the available width of its parent. Extends `.nav`, e.g.:  <ul class="nav  nav--fit"> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>Portfolio</a></li> <li><a href=#>Contact</a></li> </ul>  Thanks to @pimpl for this idea! */
+.nav--fit { display: table; width: 100%; }
+.nav--fit > li { display: table-cell; }
+.nav--fit > li > a { display: block; }
+
+/** Make a list of keywords. Extends `.nav`, e.g.:  `<ul class="nav  nav--keywords>`  */
+.nav--keywords > li:after { content: ", "; }
+.nav--keywords > li:last-child:after { display: none; }
+
+/*------------------------------------*\ $BREADCRUMB
+\*------------------------------------*/
+/** Simple breadcrumb styling to apply to (ordered) lists. Extends `.nav`, e.g.:  <ol class="nav  breadcrumb"> <li><a href=#>Home</a></li> <li><a href=#>About</a></li> <li><a href=#>The Board</a></li> <li class=current><a href=#>Directors</a></li> </ol>  Demo: jsfiddle.net/inuitcss/rkAY9  */
+.breadcrumb > li + li:before { content: "> "; }
+
+/** For denoting a path-like structure, GitHub style, e.g.:  <ol class="nav  breadcrumb--path"> <li class=breadcrumb__root><a href=#>inuit.css</a></li> <li><a href=#>inuit.css</a></li> <li><a href=#>partials</a></li> <li class=current><a href=#>objects</a></li> </ol>  */
+.breadcrumb--path > li + li:before { content: "/ "; }
+
+/** Assign a delimiter on the fly through a data attribute, e.g.:  <ol class="nav  breadcrumb"> <li><a href=#>Home</a></li> <li data-breadcrumb="|"><a href=#>About</a></li> <li data-breadcrumb="|"><a href=#>The Board</a></li> <li data-breadcrumb="|" class=current><a href=#>Directors</a></li> </ol>  */
+.breadcrumb > li + li[data-breadcrumb]:before { content: attr(data-breadcrumb) " "; }
+
+/** Denote the root of the tree. */
+.breadcrumb__root { font-weight: bold; }
+
+/*------------------------------------*\ $MEDIA
+\*------------------------------------*/
+/** Place any image- and text-like content side-by-side, as per: stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code E.g.:  <div class=media> <img src=http://placekitten.com/200/300 alt="" class=media__img> <p class=media__body>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> </div>  Demo: jsfiddle.net/inuitcss/cf4Qs  */
+.media { display: block; }
+
+.media__img { float: left; margin-right: 10px; }
+
+/** Reversed image location (right instead of left). */
+.media__img--rev { float: right; margin-left: 10px; }
+
+.media__img img, .media__img--rev img { display: block; }
+
+.media__body { overflow: hidden; }
+
+.media__body, .media__body > :last-child { margin-bottom: 0; }
+
+/** `.img`s in `.islet`s need an appropriately sized margin. */
+.islet .media__img { margin-right: 5px; }
+
+.islet .media__img--rev { margin-left: 5px; }
+
+/*------------------------------------*\ $ISLAND
+\*------------------------------------*/
+/** Simple, boxed off content, as per: csswizardry.com/2011/10/the-island-object E.g.:  <div class=island> I am boxed off. </div>  Demo: jsfiddle.net/inuitcss/u8pV3  */
+.island, .islet { display: block; }
+
+.island { padding: 10px; }
+
+.island > :last-child, .islet > :last-child { margin-bottom: 0; }
+
+/** Just like `.island`, only smaller. */
+.islet { padding: 5px; }
+
+/*------------------------------------*\ $SPLIT
+\*------------------------------------*/
+/** Simple split item for creating two elements floated away from one another, e.g.:  <dl class=split>        <dt class=split__title>Burger and fries</dt> <dd>&pound;5.99</dd>        <dt class=split__title>Fillet steak</dt> <dd>&pound;19.99</dd>        <dt class=split__title>Ice cream</dt> <dd>&pound;2.99</dd>        </dl>  <ol class="split  results"> <li class=first><b class=split__title>1st place</b> Bob</li>        <li class=second><b class=split__title>2nd place</b> Lilly</li>        <li class=third><b class=split__title>3rd place</b> Ted</li>        </ol>​  Demo: jsfiddle.net/inuitcss/9gZW7  */
+.split { text-align: right; list-style: none; margin-left: 0; }
+
+.split__title { text-align: left; float: left; clear: left; }
+
+/*------------------------------------*\ $SPRITE
+\*------------------------------------*/
+/** Giving an element a class of `.s` will throw it into ‘sprite’ mode and apply a background image e.g.:  <a class="s  s--question-mark">More info&hellip;</a>  or  <a href=#><i class="s  s--question-mark"></i> Help and FAQ</a>  Giving an element a class of `.i` will throw it into ‘icon’ mode and will not add a background, but should be used for icon fonts and is populated through a `data-icon` attribute and the `:after` pseudo-element, e.g.:  <a href=#><i class=i data-icon="&#xF000;"></i> View your favourites</a>  Where ‘&#xF000;’ might map to a star in your particular font.  These all require extension in your theme stylesheet.  Demo: jsfiddle.net/inuitcss/6TKuS  */
+.s, .i { display: inline-block; line-height: 1; position: relative; vertical-align: middle; zoom: 1; /** So using `.i` on certain elements doesn’t make a visual difference. */ font-style: normal; font-weight: normal; /** So icons added using `.i` sit in the centre of the element. */ text-align: center; }
+
+.s { background-image: url(/path/to/your/sprite.png); /** The typical size of most icons. Override in your theme stylesheet. */ width: 16px; height: 16px; top: -1px; /* H5BP method image replacement: github.com/h5bp/html5-boilerplate/commit/adecc5da035d6d76b77e3fa95c6abde841073da2 */ overflow: hidden; *text-indent: -9999px; }
+.s:before { content: ""; display: block; width: 0; height: 100%; }
+
+/** Set up Batch icon font */
+.i { font-size: 16px; /** Place the icon in a box the exact same dimensions as the icon itself. */ width: 1em; height: 1em; }
+.i:before { content: attr(data-icon); }
+
+/** Icon size modifiers. */
+.i--large { font-size: 32px; }
+
+.i--huge { font-size: 64px; }
+
+.i--natural { font-size: inherit; }
+
+/*------------------------------------*\ $STATS
+\*------------------------------------*/
+/** Simple object to display key–value statistic-like information, e.g.:   <div class=stat-group> <dl class=stat> <dt class=stat__title>Tweets</dt> <dd class=stat__value>27,740</dd> </dl>  <dl class=stat> <dt class=stat__title>Following</dt> <dd class=stat__value>11,529</dd> </dl>  <dl class=stat> <dt class=stat__title>Followers</dt> <dd class=stat__value>12,105</dd> </dl> </div>  Demo: jsfiddle.net/inuitcss/Bpwu6  */
+.stat-group { margin-left: -10px; }
+
+.stat { float: left; margin-left: 10px; display: -ms-flexbox; display: -webkit-flex; display: -moz-flex; display: flex; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; }
+
+.stat__title { -webkit-order: 1; -moz-order: 1; -ms-order: 1; -o-order: 1; order: 1; -ms-flex-order: 1; }
+
+.stat__value { margin-left: 0; -webkit-order: 2; -moz-order: 2; -ms-order: 2; -o-order: 2; order: 2; -ms-flex-order: 2; }
+
+/** Style trumps; helper and brand classes */
+/*------------------------------------*\ $HELPER
+\*------------------------------------*/
+/** A series of helper classes to use arbitrarily. Only use a helper class if an element/component doesn’t already have a class to which you could apply this styling, e.g. if you need to float `.main-nav` left then add `float:left;` to that ruleset as opposed to adding the `.float--left` class to the markup.  A lot of these classes carry `!important` as you will always want them to win out over other selectors. */
+.float--right { float: right !important; }
+
+.float--left { float: left !important; }
+
+.text--left { text-align: left !important; }
+
+.text--center { text-align: center !important; }
+
+.text--right { text-align: right !important; }
+
+.flush { margin: 0 !important; }
+
+.flush--top { margin-top: 0 !important; }
+
+.flush--right { margin-right: 0 !important; }
+
+.flush--bottom { margin-bottom: 0 !important; }
+
+.flush--left { margin-left: 0 !important; }
+
+.flush--ends { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+.flush--sides { margin-right: 0 !important; margin-left: 0 !important; }
+
+.ir { border: 0; font: 0/0 Arial; text-shadow: none; color: transparent; background-color: transparent; }
+
+.hidden { display: none !important; visibility: hidden; }
+
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+.invisible { visibility: hidden; }
+
+/** Pull items full width of `.island` parents. */
+.full-bleed { margin-right: -10px !important; margin-left: -10px !important; }
+.islet .full-bleed { margin-right: -5px !important; margin-left: -5px !important; }
+
+/** Add a help cursor to any element that gives the user extra information on `:hover`. */
+.informative { cursor: help; }
+
+/** Mute an object by reducing its opacity. */
+.muted { opacity: 0.5; filter: alpha(opacity=50); }
+
+/** Align items to the right where they imply progression/movement forward, e.g.:  <p class=proceed><a href=#>Read more...</a></p>  */
+.proceed { text-align: right; }
+
+/** Add a right-angled quote to links that imply movement, e.g.:  <a href=# class=go>Read more</a>  */
+.go:after { content: " »"; }
+
+/** Apply capital case to an element (usually a `strong`). */
+.caps { text-transform: uppercase; }
+
+/** Hide content off-screen without resorting to `display:none;` */
+.accessibility { position: absolute; left: -99999px; }
+
+[dir=rtl] .accessibility { left: auto; right: -99999px; }
+
+/** Hide content based on breakpoint */
+.hide { position: absolute; left: -9999px; }
+
+@media only screen and (max-width: 480px) { .hide--palm { position: absolute; left: -9999px; } }
+@media only screen and (min-width: 481px) and (max-width: 1023px) { .hide--lap { position: absolute; left: -9999px; } }
+@media only screen and (max-width: 1023px) { .hide--portable { position: absolute; left: -9999px; } }
+@media only screen and (min-width: 1024px) { .hide--desk { position: absolute; left: -9999px; } }
+.ir { border: 0; font: 0/0 Arial; text-shadow: none; color: transparent; background-color: transparent; }
+
+.hidden { display: none !important; visibility: hidden; }
+
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+.invisible { visibility: hidden; }
+
+.border-box { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; *behavior: url(../js/vendor/boxsizing.htc); }
+
+.clear { clear: both; float: none; }
+
+.floatleft { float: left; }
+
+.floatright { float: right; }
+
+.relative { position: relative; }
+
+.text-left { text-align: left; }
+
+.text-right { text-align: right; }
+
+.text-center { text-align: center; }
+
+.box-sprite, .box-close, .box-down, .box-frame-regulamento, .box-handler, .box-title-regulamento, .box-up { background: url('../img/sprites/box-s6efef48ccb.png') no-repeat; }
+
+.box-close { background-position: -350px 0; height: 41px; width: 41px; }
+
+.box-down { background-position: -15px 0; height: 14px; width: 15px; }
+.box-down:hover, .box-down.down_hover, .box-down.down-hover { background-position: -75px 0; }
+.box-down:active, .box-down.down_active, .box-down.down-active { background-position: -30px 0; }
+
+.box-frame-regulamento { background-position: 0 -49px; height: 580px; width: 601px; }
+
+.box-handler { background-position: -391px 0; height: 49px; width: 36px; }
+
+.box-title-regulamento { background-position: -90px 0; height: 33px; width: 260px; }
+
+.box-up { background-position: -45px 0; height: 14px; width: 15px; }
+.box-up:hover, .box-up.up_hover, .box-up.up-hover { background-position: 0 0; }
+.box-up:active, .box-up.up_active, .box-up.up-active { background-position: -60px 0; }
+
+body { font-family: "Arial", sans-serif; background-color: #999; }
+
+hr { border: 0; border-top: 1px solid #b89222; display: block; height: 1px; margin: 0; overflow: hidden; padding: 0; }
+hr.both { margin: 10px 0; }
+
+.box-frame-regulamento { position: relative; margin-left: auto; margin-right: auto; }
+.box-frame-regulamento .box-close { position: absolute; top: 160px; right: 20px; display: block; z-index: 11; }
+.box-frame-regulamento .scroller { z-index: 10; position: absolute; top: 350px; right: -16px; }
+.box-frame-regulamento .scroller .navs { position: absolute; display: block; }
+.box-frame-regulamento .scroller .navs.box-up { top: 6px; left: 10px; }
+.box-frame-regulamento .scroller .navs.box-down { bottom: 9px; left: 10px; }
+.box-frame-regulamento .box-conteudo { position: absolute; top: 179px; height: 361px; overflow: hidden; color: #555; padding: 20px; z-index: 9; font-size: 14px; font-size: 0.875rem; }
+.box-frame-regulamento .box-conteudo .box-title-regulamento { display: block; margin-left: auto; margin-right: auto; }
+.box-frame-regulamento .box-conteudo .box-conteudo-wrap { position: relative; overflow: hidden; height: 310px; }

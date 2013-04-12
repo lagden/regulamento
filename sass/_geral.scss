@@ -1,0 +1,76 @@
+$amarelo: #b89222;
+
+$box-layout: smart;
+@import "sprites/box/*.png";
+@include all-box-sprites(true);
+
+body{
+    font-family: $brand-face;
+    background-color: #999;
+}
+
+hr{
+    border: 0;
+    border-top: 1px solid $amarelo;
+    display: block;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    &.both{
+        margin: 10px 0;
+    }
+}
+
+.box-frame-regulamento{
+    $gap: 20px;
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    .box-close{
+        position: absolute;
+        top: 160px;
+        right: $gap;
+        display: block;
+        z-index: 11;
+    }
+    .scroller{
+        z-index: 10;
+        position: absolute;
+        top: 350px;
+        right: -16px;
+        .navs{
+            position: absolute;
+            display: block;
+            &.box-up{
+                top: 6px;
+                left: 10px;
+            }
+            &.box-down{
+                bottom: 9px;
+                left: 10px;
+            }
+        }
+    }
+    .box-conteudo{
+        position: absolute;
+        top: 179px;
+        height: 361px;
+        overflow: hidden;
+        color: #555;
+        padding: $gap;
+        z-index: 9;
+        .box-title-regulamento{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @include font-size(14px);
+        .box-conteudo-wrap{
+            position: relative;
+            overflow: hidden;
+            height: 310px;
+        }
+    }
+}

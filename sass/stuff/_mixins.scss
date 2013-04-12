@@ -1,0 +1,98 @@
+@mixin clear-floats(){
+    &:before,
+    &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    & {
+        zoom: 1;
+    }
+}
+
+@mixin inline-block(){
+    display:inline-block;
+
+    // IE7 fix
+    *display:inline;
+    *zoom:1;
+}
+
+@mixin boxsizing-borderbox{
+    @include box-sizing(border-box);
+
+    //IE7 fix
+    *behavior: url(../js/vendor/boxsizing.htc);
+}
+
+
+@mixin fontface($embedFont : false){
+    @if $embedFont != false {
+        @include font-face(
+            "#{$embedFont}",
+            font-files(
+                "#{$embedFont}-webfont.woff", woff,
+                "#{$embedFont}-webfont.ttf", truetype,
+                "#{$embedFont}-webfont.svg##{$embedFont}", svg
+                ),
+            "#{$embedFont}-webfont.eot"
+        );
+    }
+}
+
+@mixin fontfamily($embedFont : false){
+    @include sans-serif($embedFont);
+}
+
+@mixin fontsize($fs: 16, $fb: $fontBase){
+    @include relativeSize('font-size',$fs,$fb);
+}
+
+@mixin relativeSize($attr, $s: 16, $b: $fontBase){
+    #{$attr}: #{$s}px;
+    #{$attr}: relative-size($s,$b,rem);
+}
+
+@mixin lnkcolorize($fc : #000, $lc : #000, $hover: true){
+    @if $hover == true {
+        @include hover-link;
+    }
+    @else{
+        text-decoration: none;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+    @include link_colors($fc,$lc,$fc,$fc,$fc);
+    &.selected{
+        @include link_colors($lc,$lc,$lc,$lc,$lc);
+    }
+}
+
+@mixin helperGrid($c: rgba(0, 0, 0, .5), $show: false){
+    @if $show == true { background-color: $c; }
+}
+
+@mixin placeholder($color: $red) {
+    &:-moz-placeholder {
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin grid($columns) {
+    @extend .mlhg;
+    @extend .mrhg;
+    width: gridsystem-width($columns) - $gutterHorizontal;
+}

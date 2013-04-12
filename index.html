@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dummy Box</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <a class="openBox" href="box.html">Abre o box</a>
+        <script src="//code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="js/box.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var theBody = $('body');
+            $('.openBox').on('click.openBox', {b: theBody}, function(ev){
+                ev.preventDefault();
+                var theBox = new TheBox(ev.data.b);
+                theBox.open(this.href);
+            })
+        </script>
+    </body>
+</html>

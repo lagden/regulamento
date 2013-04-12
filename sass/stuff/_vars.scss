@@ -1,0 +1,45 @@
+// Cores
+$preto: #000000;
+$branco: #FFFFFF;
+
+$laranja: #ff6d43;
+$laranja_escuro: #a04228;
+$verde: #8ad300;
+$cinza: #bfbfbf;
+$cinza_claro: #f6f6f6;
+$cinza_escuro: #252322;
+
+$transparent: transparent;
+
+// Font
+$fontBase: 16;
+$fontSize: 100%;
+$font-color: $cinza_escuro;
+
+// WebFont
+$webfont01: 'Open Sans Condensed';
+
+// Links
+$link-color: $font-color;
+$link-visited-color: $font-color;
+$link-hover-color: lighten($font-color, 10%);
+
+// Espaçamentos
+$gutterHorizontal: 30px;
+$gutterHorizontalHalf: floor($gutterHorizontal / 2);
+
+// Border Radius
+$br: relative-size(7, $fontBase, rem);
+
+// Grid cores
+$gh1: rgba(255,255,0,.1);
+$gh2: rgba(255,0,255,.3);
+$gh3: rgba(0,255,255,.3);
+$ghLines: #4AFFFF;
+$ghCol: rgba(0,255,0,.2);
+
+// Form
+$paddingForm: 5;
+$heightForm: 30;
+$lineHeightForm: 30;
+$borderFormColor: #EBE9EA;

@@ -1,0 +1,28 @@
+// Grid cores
+$gh1: rgba(255,255,0,.1);
+$gh2: rgba(255,0,255,.3);
+$gh3: rgba(0,255,255,.3);
+$ghLines: #4AFFFF;
+$ghCol: rgba(0,255,0,.2);
+
+$show: false;
+
+// Default Class Grid
+.row{
+    @include clear-floats;
+    @include helperGrid($gh3, $show);
+}
+
+$i: 1;
+@while $i <= $columns {
+    .col-#{$i} {
+        @include column($i);
+        @include helperGrid($gh2, $show);
+    }
+
+    .cell-#{$i} {
+        @include cell($i);
+        @include helperGrid($gh2, $show);
+    }
+    $i: $i + 1;
+}
